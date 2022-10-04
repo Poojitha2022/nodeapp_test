@@ -3,20 +3,20 @@ pipeline {
   stages {
 	stage("Checkout") {
       steps {
-        sh 'git clone https://github.com/gvsiva2008/nodeapp_test.git'
+        sh 'git clone https://github.com/Poojitha2022/nodeapp_test.git'
       }
 	}
     stage("Build Image") {
       steps {     
 	sh 'whoami'      
-        sh 'docker build -t gvsiva2008/nodeapp_test .'
+        sh 'docker build -t poojitha2022/nodeapp_test .'
       }
     }
     stage("pushtoHub") { 
         steps{
            withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
              sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-             sh 'docker push gvsiva2008/nodeapp_test:latest'
+             sh 'docker push poojitha2022/nodeapp_test:latest'
            }
         }
      }
